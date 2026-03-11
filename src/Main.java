@@ -2,37 +2,41 @@ package Palindrome;
 
 import java.util.Scanner;
 
-
 public class UseCasePalindromeCheckerApp {
 
-    // Recursive palindrome check
-    public static boolean isPalindrome(String str, int start, int end) {
+    // Method to preprocess string and check palindrome
+    public static boolean isPalindrome(String input) {
 
-        // Base condition: crossed pointers or single char
-        if (start >= end)
-            return true;
+        // Normalize string:
+        // 1. Remove spaces using regex
+        // 2. Convert to lowercase
+        String processed = input.replaceAll("\\s+", "").toLowerCase();
 
-        // If mismatch found
-        if (str.charAt(start) != str.charAt(end))
-            return false;
+        // Convert to char array
+        char[] arr = processed.toCharArray();
 
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
+        int start = 0;
+        int end = arr.length - 1;
+
+        // Compare characters from both ends
+        while (start < end) {
+            if (arr[start] != arr[end])
+                return false;
+
+            start++;
+            end--;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("=== Recursive Palindrome Checker ===");
+        System.out.println("=== Case-Insensitive & Space-Ignored Palindrome Checker ===");
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        // Normalize string
-        String processed = input.replaceAll("\\s+", "").toLowerCase();
-
-        boolean result = isPalindrome(processed, 0, processed.length() - 1);
-
-        if (result)
+        if (isPalindrome(input))
             System.out.println("Result: The string IS a palindrome.");
         else
             System.out.println("Result: The string is NOT a palindrome.");
