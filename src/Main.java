@@ -1,28 +1,29 @@
 package Palindrome;
-public class UseCasePalindromeCheckerApp{
+import java.util.Stack;
+
+public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         // Hardcoded string
-        String word = "racecar";
+        String word = "level";
 
-        // Convert string to character array
-        char[] chars = word.toCharArray();
+        // Create stack
+        Stack<Character> stack = new Stack<>();
 
-        // Two-pointer variables
-        int start = 0;
-        int end = chars.length - 1;
+        // Push all characters into stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        // Compare characters from both ends
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Pop characters and compare
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Print result
