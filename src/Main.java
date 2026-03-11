@@ -1,21 +1,24 @@
 package Palindrome;
-
+import java.util.*;
 public class UseCasePalindromeCheckerApp {
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Input text: ");
+        String input= sc.next();
+        char[] ch= input.toCharArray();
+        String reversed= "";
 
-    public static void main(String[] args) {
-
-        // Hardcoded string
-        String word = "madam";
-
-        // Reverse the string
-        String reversed = new StringBuilder(word).reverse().toString();
-
-        // Check palindrome using if-else
-        if (word.equals(reversed)) {
-            System.out.println(word + " is a Palindrome.");
-        } else {
-            System.out.println(word + " is NOT a Palindrome.");
+        for(int i=input.length()-1; i>=0; i-- ){
+            reversed += ch[i];
         }
 
+        if(input.equals(reversed)){
+            System.out.println("Is it a Palindrome? : True");
+        }
+        else {
+            System.out.println("Is it a Palindrome? : False");
+        }
     }
+
+
 }
